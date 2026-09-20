@@ -281,10 +281,11 @@ function openApprovalCenterFromDashboard() {
             <span class="highlight-primary">{{ dashboardData.levelDistribution?.ahead ?? 0 }}</span>
             项、正常 {{ dashboardData.levelDistribution?.normal ?? 0 }} 项、延期
             {{ dashboardData.levelDistribution?.delayed ?? 0 }} 项。
-            <template v-if="dashboardData.alertIndicators.severe > 0">
+            <!-- H3（2026-09-19 定案）：延期口径统一为人工鉴定三档（levelDistribution），与圆环图同源 -->
+            <template v-if="(dashboardData.levelDistribution?.delayed ?? 0) > 0">
               {{ selectedMonth }}月存在
               <span class="highlight-danger"
-                >{{ dashboardData.alertIndicators.severe }} 项延期</span
+                >{{ dashboardData.levelDistribution?.delayed ?? 0 }} 项延期</span
               >
               任务需重点关注。
             </template>
